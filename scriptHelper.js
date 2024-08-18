@@ -18,13 +18,24 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  }
  
  function validateInput(testInput) {
+    if (testInput === "") {
+        return "Empty"
+    } else if (isNaN(testInput)) {
+        return "Not a Number"
+    } else {
+        return "Is a Number"
+    }
     
  }
  
  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    
- }
- 
+    faultyItems.style.visibility = "visible";
+    if (fuelLevel.value < 10000) {
+        let fuelStatus = document.getElementById("fuelStatus");
+        let faultyItems = document.getElementById("faultyItems");
+        fuelStatus.innerHTML = `${"Fuel level insufficent, must exceed 10000 liters."}`;
+    } 
+ };
  async function myFetch() {
      let planetsReturned;
  
