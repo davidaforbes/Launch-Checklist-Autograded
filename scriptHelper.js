@@ -3,7 +3,8 @@
 require('cross-fetch/polyfill');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-    document.innerHTML =
+    let div = document.getElementById("missionTarget")
+    div.innerHTML =
     `
                  <h2>Mission Destination</h2>
                  <ol>
@@ -34,7 +35,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     let fuelStatus = document.getElementById("fuelStatus");
     let cargoStatus = document.getElementById("cargoStatus");
     let pilotStatus = document.getElementById("pilotStatus");
-    let copilotStatus = document.getElementById("copilotStatus")
+    let copilotStatus = document.getElementById("copilotStatus");
 
    list.style.visibility = "visible";
     
@@ -50,13 +51,16 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         statusHeader.innerHTML = "Shuttle Not Ready for Launch";
         statusHeader.style.color = "red";
     }
-    if (fuelLevel >= 10000 && cargoMass <= 10000) {
-        statusHeader.style.color = "green";
-        statusHeader.innerHTML = "Shuttle is Ready for Launch";
-        cargoStatus.innerHTML = "Cargo mass low enough for launch"
-        fuelStatus.innerHTML = "Fuel level high enough for launch"
+    if (fuelLevel >= 10000) {
+        fuelStatus.innerHTML = "Fuel level high enough for launch";
     }
-    
+    if (cargoMass <= 10000) {
+        cargoStatus.innerHTML = "Cargo mass low enough for launch";
+    }
+    if (fuelStatus.innerHTML === "Fuel level high enough for launch" && cargoStatus.innerHTML === "Cargo mass low enough for launch") {
+    statusHeader.style.color = "green";
+    statusHeader.innerHTML = "Shuttle is Ready for Launch";
+    }
     return
  };
 

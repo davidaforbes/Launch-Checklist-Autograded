@@ -28,18 +28,16 @@ window.addEventListener("load", function() {
 
     
     
-    let listedPlanets;
-    let listedPlanetsResponse;
+let listedPlanets;
+let listedPlanetsResponse;
 
-    listedPlanetsResponse = myFetch()
-    listedPlanetsResponse.then(function (result) {
-        listedPlanets = result;
-        //console.log(listedPlanets);
-    }).then(function () {
-        //console.log(listedPlanets);
-       let destArr = pickPlanet(listedPlanets)
-       let missionTarget = document.getElementById("missionTarget");
-       addDestinationInfo(missionTarget,destArr.name, destArr.diameter, destArr.star, destArr.distance, destArr.moons,destArr.image)
-
-    })
+listedPlanetsResponse = myFetch()
+listedPlanetsResponse.then(function (result) {
+    listedPlanets = result;
+    //console.log(listedPlanets);
+}).then(function () {
+    //console.log(listedPlanets);
+    let destArr = pickPlanet(listedPlanets)
+    addDestinationInfo(document,destArr.name, destArr.diameter, destArr.star, destArr.distance, destArr.moons,destArr.image)
+})
  
